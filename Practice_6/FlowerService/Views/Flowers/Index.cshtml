@@ -23,9 +23,7 @@
                     <span class="float-right">
                         <a asp-action="Details" asp-route-id="@flower.Id" class="btn btn-info">Подробности</a>
                         <a asp-action="Edit" asp-route-id="@flower.Id" class="btn btn-primary">Редактировать</a>
-                        <a asp-action="Delete" asp-route-id="@flower.Id" onclick="return confirm('Вы действительно хотите удалить продукт ?')" }) class="btn btn-danger">Удалить</a>
-
-                        
+                        <a asp-action="Delete" asp-route-id="@flower.Id" onclick="return confirm('Вы действительно хотите удалить цветок ?')" }) class="btn btn-danger">Удалить</a>              
                     </span>
                 </div>
             }

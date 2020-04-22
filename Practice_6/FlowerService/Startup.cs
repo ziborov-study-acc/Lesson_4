@@ -23,7 +23,9 @@ namespace FlowerService {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
+            
             services.AddDbContext<FlowerServiceContext>(options => options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("FlowerServiceConnection")));
+            
             services.AddScoped<IFlowerServiceRepository, FlowerServiceRepository>();
             services.AddControllersWithViews();
         }
@@ -50,7 +52,7 @@ namespace FlowerService {
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Flowers}/{action=Index}/{id?}");
             });
         }
     }

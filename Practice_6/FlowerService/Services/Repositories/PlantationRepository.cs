@@ -10,8 +10,25 @@ namespace FlowerService.Services.Repositories {
         public PlantationRepository(FlowerServiceContext context) : base(context) {
         }
 
+        public void CreatePlantationFlower(PlantationFlower plantationFlower) {
+            Context.Plantations.SingleOrDefault(plantation => plantation.Id == plantationFlower.PlaceId).PlantationFlowers.Add(plantationFlower);
+        }
+
+        public void DeletePlantationFlower(PlantationFlower plantationFlower) {
+            Context.Plantations.SingleOrDefault(plantation => plantation.Id == plantationFlower.PlaceId).PlantationFlowers.Remove(plantationFlower);
+        }
+
         public Plantation Get(int id) {
             return Context.Plantations.SingleOrDefault(plantation => plantation.Id == id);
+        }
+
+        public IEnumerable<PlantationFlower> GetPlantationFlowers(int id) {
+            return Context.Plantations.SingleOrDefault(plantation => plantation.Id == id).PlantationFlowers;
+        }
+
+        public void UpdatePlantationFlower(PlantationFlower plantationFlower) {
+           var item= Context.Plantations.SingleOrDefault(plantation => plantation.Id == plantationFlower.PlaceId).PlantationFlowers.SingleOrDefault(pf => pf.PlaceId == plantationFlower.PlaceId && pf.FlowerId == plantationFlower.FlowerId);
+            item = plantationFlower;
         }
     }
 }

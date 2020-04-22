@@ -8,9 +8,12 @@ namespace FlowerServiceLibrary {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        [Display(Name = "Название")]
         [Required]
         [StringLength(100, ErrorMessage = "Количество символом больше 100!")]
         public string Name { get; set; }
+        [Display(Name="Адрес")]
         [Required]
         [StringLength(500, ErrorMessage = "Количество символом больше 500!")]
         public string Address { get; set; }
