@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FlowerService.Services;
+using FlowerService.Services.Interfaces;
+using FlowerService.Services.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -22,6 +24,7 @@ namespace FlowerService {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services.AddDbContext<FlowerServiceContext>(options => options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("FlowerServiceConnection")));
+            services.AddScoped<IFlowerServiceRepository, FlowerServiceRepository>();
             services.AddControllersWithViews();
         }
 
