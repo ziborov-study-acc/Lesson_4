@@ -47,7 +47,7 @@ namespace FlowerService.Controllers {
         public IActionResult Create(Plantation plantation) {
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(plantation);
             }
 
             _flowerServiceRepository.PlantationRepository.Create(plantation);
@@ -113,19 +113,22 @@ namespace FlowerService.Controllers {
         [HttpPost]
         public IActionResult FlowerCreate(PlantationFlower plantationFlower) {
             if (!ModelState.IsValid)
-                return RedirectToAction("Add", plantationFlower.PlaceId);
+            {
+                return View(plantationFlower);
+            }
 
             Plantation plantation = _flowerServiceRepository.PlantationRepository.Get(plantationFlower.PlaceId);
             if (plantation.PlantationFlowers.FirstOrDefault(flowers => flowers.PlaceId == plantationFlower.PlaceId && flowers.FlowerId == plantationFlower.FlowerId) != null)
             {
-                //TODO Add if contains error display
-                return RedirectToAction("Add", plantationFlower.PlaceId);
+                ViewBag.Flowers = new SelectList(_flowerServiceRepository.FlowerRepository.All(), "Id", "Name");
+                ModelState["FlowerId"].Errors.Add("Такой цветок уже есть на плантации");
+                return View(plantationFlower);
             }
 
             _flowerServiceRepository.PlantationRepository.CreatePlantationFlower(plantationFlower);
             _flowerServiceRepository.SaveChanges();
 
-            return RedirectToAction("Details", plantationFlower.PlaceId);
+            return RedirectToAction("Edit", new { id = plantationFlower.PlaceId });
         }
 
         public IActionResult FlowerDetails(int? placeId,int? flowerId) {
@@ -158,16 +161,31 @@ namespace FlowerService.Controllers {
         public IActionResult FlowerEdit(PlantationFlower plantationFlower) {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("FlowerEdit",new { plantationFlower.PlaceId, plantationFlower.FlowerId });
+                ViewBag.Flowers = new SelectList(_flowerServiceRepository.FlowerRepository.All(), "Id", "Name");
+                return View(plantationFlower);
             }
 
-            Plantation plantation = _flowerServiceRepository.PlantationRepository.Get(plantationFlower.PlaceId);
-
             _flowerServiceRepository.PlantationRepository.UpdatePlantationFlower(plantationFlower);
-            _flowerServiceRepository.PlantationRepository.Update(plantation);
             _flowerServiceRepository.SaveChanges();
 
-            return RedirectToAction("Edit", plantationFlower.PlaceId);
+            return RedirectToAction("Edit", new { id = plantationFlower.PlaceId });
+        }
+
+        public IActionResult FlowerDelete(int? placeId, int? flowerId) {
+            if (placeId != null || flowerId != null || _flowerServiceRepository.PlantationRepository.Get(placeId.Value) != null)
+            {
+                var plantation = _flowerServiceRepository.PlantationRepository.Get(placeId.Value);
+                var plantationFlower = plantation.PlantationFlowers.FirstOrDefault(item => item.PlaceId == placeId.Value && item.FlowerId == flowerId.Value);
+                if (plantationFlower != null)
+                {
+                    _flowerServiceRepository.PlantationRepository.DeletePlantationFlower(plantationFlower);
+                    _flowerServiceRepository.SaveChanges();
+                    return RedirectToAction("Edit",new { id = placeId });
+                }
+
+            }
+            return RedirectToAction("Index");
+
         }
     }
 }
