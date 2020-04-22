@@ -7,5 +7,11 @@ using System.Threading.Tasks;
 namespace FlowerService.Services.Interfaces {
     public interface IWarehouseRepository : IRepositoryBase<Warehouse> {
         Warehouse Get(int id);
+
+        void CreateWarehouseFlower(WarehouseFlower warehouseFlower);
+        void UpdateWarehouseFlower(WarehouseFlower warehouseFlower);
+        void DeleteWarehouseFlower(WarehouseFlower warehouseFlower);
+
+        IEnumerable<WarehouseFlower> GetWarehouseFlowers(int id);
     }
 }

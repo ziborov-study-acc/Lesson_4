@@ -1,4 +1,4 @@
-﻿@model FlowerServiceLibrary.PlantationFlower
+﻿@model FlowerServiceLibrary.WarehouseFlower
 
 <h1>Добавление цветка</h1>
 
@@ -7,7 +7,7 @@
     <div class="col-md-4">
         <form asp-action="FlowerCreate">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input asp-for="PlaceId" type="hidden"/>
+            <input asp-for="PlaceId" type="hidden" />
             <div class="form-group">
                 <label asp-for="FlowerId" class="control-label"></label>
                 <select asp-for="FlowerId" asp-items="@ViewBag.Flowers" class="form-control"></select>

@@ -11,7 +11,7 @@ namespace FlowerService.Services.Repositories {
         }
 
         public void CreatePlantationFlower(PlantationFlower plantationFlower) {
-            Context.PlantationFlowers.Add(plantationFlower);
+            Context.Plantations.SingleOrDefault(plantation => plantation.Id == plantationFlower.PlaceId).PlantationFlowers.Add(plantationFlower);            //Context.PlantationFlowers.Add(plantationFlower);
         }
 
         public void DeletePlantationFlower(PlantationFlower plantationFlower) {

@@ -1,8 +1,8 @@
 ﻿@using FlowerServiceLibrary
-@model FlowerServiceLibrary.Plantation
+@model FlowerServiceLibrary.Warehouse
 
 
-<h1>Подробности о плантации</h1>
+<h1>Подробности о складе</h1>
 
 <div>
     <hr />
@@ -22,19 +22,19 @@
     </dl>
     <div class="form-group">
         <div class="list-group">
-            @if (Model.PlantationFlowers.Count() == 0)
+            @if (Model.WarehouseFlowers.Count() == 0)
             {
                 <div class="list-group-item">
-                    <h4 class="text-danger"> Цветы на плантации отсутствуют</h4>
+                    <h4 class="text-danger"> Цветы на складе отсутствуют</h4>
                 </div>
             }
             else
             {
-                foreach (PlantationFlower plantationFlower in Model.PlantationFlowers)
+                foreach (WarehouseFlower warehouseFlower in Model.WarehouseFlowers)
                 {
                     <div class="list-group-item">
-                        @plantationFlower.Flower.Name
-                        <span class="float-right">@plantationFlower.Amount</span>
+                        @warehouseFlower.Flower.Name
+                        <span class="float-right">@warehouseFlower.Amount</span>
                     </div>
                 }
             }

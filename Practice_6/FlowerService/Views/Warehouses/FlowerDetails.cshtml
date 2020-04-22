@@ -1,4 +1,4 @@
-﻿@model FlowerServiceLibrary.PlantationFlower
+﻿@model FlowerServiceLibrary.WarehouseFlower
 
 <h1>Подробности о цветке</h1>
 <div>
@@ -27,7 +27,7 @@
 </div>
 <div class="form-group">
     <a asp-action="Edit" asp-route-id="@Model.PlaceId" class="btn btn-primary">Назад</a>
-    <a asp-action="FlowerEdit" asp-route-placeId="@Model.PlaceId" asp-route-flowerId="@Model.FlowerId"  class="btn btn-info">Редактировать</a>
-    <a asp-action="FlowerDelete"asp-route-placeId="@Model.PlaceId" asp-route-flowerId="@Model.FlowerId" class="btn btn-danger">Удалить</a>
+    <a asp-action="FlowerEdit" asp-route-placeId="@Model.PlaceId" asp-route-flowerId="@Model.FlowerId" class="btn btn-info">Редактировать</a>
+    <a asp-action="FlowerDelete" asp-route-placeId="@Model.PlaceId" asp-route-flowerId="@Model.FlowerId" class="btn btn-danger">Удалить</a>
 </div>
 

@@ -3,14 +3,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Список цветов</h1>
+<h1>Список плантаций</h1>
 
 <div class="container">
     <div class="list-group">
         @if (((IEnumerable<Plantation>)ViewBag.Plantations).Count() == 0)
         {
             <div class="list-group-item clearfix">
-                <h3 class="text-danger"> Плантации отсутствуют</h3>
+                <h4 class="text-danger"> Плантации отсутствуют</h4>
             </div>
         }
         else
@@ -24,8 +24,6 @@
                         <a asp-action="Details" asp-route-id="@plantation.Id" class="btn btn-info">Подробности</a>
                         <a asp-action="Edit" asp-route-id="@plantation.Id" class="btn btn-primary">Редактировать</a>
                         <a asp-action="Delete" asp-route-id="@plantation.Id" onclick="return confirm('Вы действительно хотите удалить плантацию ?')" }) class="btn btn-danger">Удалить</a>
-
-
                     </span>
                 </div>
             }

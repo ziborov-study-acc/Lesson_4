@@ -1,7 +1,7 @@
 ﻿@using FlowerServiceLibrary;
-@model FlowerServiceLibrary.Plantation;
+@model FlowerServiceLibrary.Warehouse;
 
-<h1>Редактирование информации о плантации</h1>
+<h1>Редактирование информации о складе</h1>
 <hr />
 <div class="row">
     <div class="col-md-10">
@@ -20,22 +20,22 @@
             </div>
             <div class="form-group">
                 <div class="list-group">
-                    @if (Model.PlantationFlowers.Count() == 0)
+                    @if (Model.WarehouseFlowers.Count() == 0)
                     {
                         <div class="list-group-item clearfix">
-                            <h4 class="text-danger"> Цветы на плантации отсутствуют</h4>
+                            <h4 class="text-danger"> Цветы на складе отсутствуют</h4>
                         </div>
                     }
                     else
                     {
-                        foreach (PlantationFlower plantationFlower in Model.PlantationFlowers)
+                        foreach (WarehouseFlower warehouseFlower in Model.WarehouseFlowers)
                         {
                             <div class="list-group-item">
-                                @plantationFlower.Flower.Name
+                                @warehouseFlower.Flower.Name
                                 <span class="float-right">
-                                    <a asp-action="FlowerDetails" asp-route-placeId="@plantationFlower.PlaceId" asp-route-flowerId="@plantationFlower.FlowerId" class="btn btn-info">Подробности</a>
-                                    <a asp-action="FlowerEdit" asp-route-placeId="@plantationFlower.PlaceId" asp-route-flowerId="@plantationFlower.FlowerId" class="btn btn-primary">Редактировать</a>
-                                    <a asp-action="FlowerDelete" asp-route-placeId="@plantationFlower.PlaceId" asp-route-flowerId="@plantationFlower.FlowerId" onclick="return confirm('Вы действительно хотите удалить цветы ?')" }) class="btn btn-danger">Удалить</a>
+                                    <a asp-action="FlowerDetails" asp-route-placeId="@warehouseFlower.PlaceId" asp-route-flowerId="@warehouseFlower.FlowerId" class="btn btn-info">Подробности</a>
+                                    <a asp-action="FlowerEdit" asp-route-placeId="@warehouseFlower.PlaceId" asp-route-flowerId="@warehouseFlower.FlowerId" class="btn btn-primary">Редактировать</a>
+                                    <a asp-action="FlowerDelete" asp-route-placeId="@warehouseFlower.PlaceId" asp-route-flowerId="@warehouseFlower.FlowerId" onclick="return confirm('Вы действительно хотите удалить цветы ?')" }) class="btn btn-danger">Удалить</a>
                                 </span>
                             </div>
                         }
