@@ -33,10 +33,7 @@
                 <select asp-for="Status" asp-items="@ViewBag.Statuses" class="form-control"></select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <a asp-action="Index" class="btn btn-danger">Назад</a>
-                <input type="submit" value="Редактировать" class="btn btn-success" />
-            </div>
+            <h4>Цветы в поставке</h4>
             <div class="form-group">
                 <div class="list-group">
                     @if (Model.SupplyFlowers.Count() == 0)
@@ -63,6 +60,10 @@
                         <a asp-action="FlowerCreate" asp-route-id="@Model.Id" class="btn btn-secondary">Добавить</a>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" class="btn btn-danger">Назад</a>
+                <input type="submit" value="Редактировать" class="btn btn-success" />
             </div>
         </form>
     </div>

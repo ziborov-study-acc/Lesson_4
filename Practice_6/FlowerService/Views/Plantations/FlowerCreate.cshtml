@@ -19,7 +19,7 @@
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <a asp-action="Index" class="btn btn-danger">Назад</a>
+                <a asp-action="Edit" asp-route-id="@Model.PlaceId" class="btn btn-danger">Назад</a>
                 <input type="submit" value="Добавить" class="btn btn-success" />
             </div>
         </form>

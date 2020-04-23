@@ -10,11 +10,11 @@ namespace FlowerServiceLibrary {
         public int Id { get; set; }
 
         [Display(Name = "Название")]
-        [Required]
+        [Required(ErrorMessage = "Введите название")]
         [StringLength(100, ErrorMessage = "Количество символом больше 100!")]
         public string Name { get; set; }
         [Display(Name="Адрес")]
-        [Required]
+        [Required(ErrorMessage = "Введите адресс")]
         [StringLength(500, ErrorMessage = "Количество символом больше 500!")]
         public string Address { get; set; }
 

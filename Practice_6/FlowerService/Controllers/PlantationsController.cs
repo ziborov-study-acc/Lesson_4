@@ -74,6 +74,7 @@ namespace FlowerService.Controllers {
         public IActionResult Edit(Plantation plantation) {
             if (!ModelState.IsValid)
             {
+                plantation.PlantationFlowers = _flowerServiceRepository.PlantationRepository.Get(plantation.Id).PlantationFlowers;
                 return View(plantation);
             }
 

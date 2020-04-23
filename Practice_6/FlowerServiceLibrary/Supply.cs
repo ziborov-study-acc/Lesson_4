@@ -8,6 +8,7 @@ using System.Security;
 namespace FlowerServiceLibrary {
     public class Supply
     {
+        [Display(Name ="Номер поставки")]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

@@ -73,6 +73,8 @@ namespace FlowerService.Controllers
         public IActionResult Edit(Warehouse warehouse) {
             if (!ModelState.IsValid)
             {
+                warehouse.WarehouseFlowers = _flowerServiceRepository.WarehouseRepository.Get(warehouse.Id).WarehouseFlowers;
+
                 return View(warehouse);
             }
 

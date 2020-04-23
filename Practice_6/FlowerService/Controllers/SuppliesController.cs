@@ -83,7 +83,8 @@ namespace FlowerService.Controllers
         public IActionResult Edit(Supply supply) {
             if (!ModelState.IsValid)
             {
-                
+                supply.SupplyFlowers = _flowerServiceRepository.SupplyRepository.Get(supply.Id).SupplyFlowers;
+
                 ViewBag.Plantations = new SelectList(_flowerServiceRepository.PlantationRepository.All(), "Id", "Name");
                 ViewBag.Warehouses = new SelectList(_flowerServiceRepository.WarehouseRepository.All(), "Id", "Name");
                 ViewBag.Statuses = SupplyStatuses;
