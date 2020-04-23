@@ -24,9 +24,12 @@ namespace FlowerServiceLibrary {
         public int WarehouseId { get; set; }
         public virtual Warehouse Warehouse { get; set; }
         
+        [Display(Name ="Планируемая дата поставки")]
         public DateTime? SheduledDate { get; set; }
+        [Display(Name = "Реальная дата поставки")]
         public DateTime? ClosedDate { get; set; }
 
+        [Display(Name = "Статус поставки")]
         [Required]
         [StringLength(40)]
         public string Status { get; set; }

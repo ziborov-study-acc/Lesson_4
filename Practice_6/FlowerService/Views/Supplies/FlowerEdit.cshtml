@@ -1,18 +1,15 @@
 ﻿@model FlowerServiceLibrary.SupplyFlower
 
 <h1>Редактирование информации о цветке</h1>
-
+<h4>@Model.Flower.Name</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="FlowerEdit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input asp-for="SupplyId" type="hidden" />
-            <div class="form-group">
-                <label asp-for="FlowerId" class="control-label"></label>
-                <select asp-for="FlowerId" asp-items="@ViewBag.Flowers" class="form-control"></select>
-                <span asp-validation-for="FlowerId" class="text-danger"></span>
-            </div>
+            <input asp-for="FlowerId" type="hidden" />
+
             <div class="form-group">
                 <label asp-for="Amount" class="control-label"></label>
                 <input asp-for="Amount" class="form-control" />
