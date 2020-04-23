@@ -1,0 +1,33 @@
+﻿@using FlowerServiceLibrary;
+
+
+<h1>Список поставок</h1>
+
+<div class="container">
+    <div class="list-group">
+        @if (((IEnumerable<Supply>)ViewBag.Supplies).Count() == 0)
+        {
+            <div class="list-group-item clearfix">
+                <h4 class="text-danger"> Плантации отсутствуют</h4>
+            </div>
+        }
+        else
+        {
+            foreach (Supply supply in ViewBag.Supplies)
+            {
+                <div class="list-group-item">
+                  Поставка #@supply.Id
+
+                    <span class="float-right">
+                        <a asp-action="Details" asp-route-id="@supply.Id" class="btn btn-info">Подробности</a>
+                        <a asp-action="Edit" asp-route-id="@supply.Id" class="btn btn-primary">Редактировать</a>
+                        <a asp-action="Delete" asp-route-id="@supply.Id" onclick="return confirm('Вы действительно хотите удалить плантацию ?')" }) class="btn btn-danger">Удалить</a>
+                    </span>
+                </div>
+            }
+        }
+        <div class="list-group-item">
+            <a asp-action="Create" class="btn btn-success">Добавить</a>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,7 @@ namespace FlowerService.Services.Repositories {
         private IFlowerRepository _flowerRepository;
         private IPlantationRepository _plantationRepository;
         private IWarehouseRepository _warehouseRepository;
+        private ISupplyRepository _supplyRepository;
         public IFlowerRepository FlowerRepository {
             get {
                 if (_flowerRepository == null)
@@ -32,6 +33,13 @@ namespace FlowerService.Services.Repositories {
                 if (_warehouseRepository == null)
                     _warehouseRepository = new WarehouseRepository(_context);
                 return _warehouseRepository;
+            }
+        }
+        public ISupplyRepository SupplyRepository {
+            get {
+                if (_supplyRepository == null)
+                    _supplyRepository = new SupplyRepository(_context);
+                return _supplyRepository;
             }
         }
 

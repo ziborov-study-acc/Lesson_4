@@ -8,7 +8,7 @@ namespace FlowerService.Services.Interfaces {
         IFlowerRepository FlowerRepository { get; }
         IPlantationRepository PlantationRepository { get; }
         IWarehouseRepository WarehouseRepository { get; }
-
+        ISupplyRepository SupplyRepository { get; }
         void SaveChanges();
     }
 }

@@ -12,10 +12,14 @@ namespace FlowerServiceLibrary {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Display(Name ="Плантация")]
+        [Required]
         [ForeignKey("Plantation")]
         public int PlantationId { get; set; }
         public virtual Plantation Plantation { get; set; }
-        
+
+        [Display(Name = "Склад")]
+        [Required]
         [ForeignKey("Warehouse")]
         public int WarehouseId { get; set; }
         public virtual Warehouse Warehouse { get; set; }

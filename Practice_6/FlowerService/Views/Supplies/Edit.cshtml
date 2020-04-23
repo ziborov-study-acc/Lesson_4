@@ -1,0 +1,70 @@
+﻿@using FlowerServiceLibrary;
+@model FlowerServiceLibrary.Supply
+
+<h1>Редактирование информации о поставке</h1>
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="PlantationId" class="control-label"></label>
+                <select asp-for="PlantationId" asp-items="@ViewBag.Plantations" class="form-control"></select>
+                <span asp-validation-for="PlantationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WarehouseId" class="control-label"></label>
+                <select asp-for="WarehouseId" asp-items="@ViewBag.Warehouses" class="form-control"></select>
+                <span asp-validation-for="WarehouseId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SheduledDate" class="control-label"></label>
+                <input asp-for="SheduledDate" type="date" class="form-control" />
+                <span asp-validation-for="SheduledDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClosedDate" class="control-label"></label>
+                <input asp-for="ClosedDate" type="date" class="form-control" />
+                <span asp-validation-for="ClosedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" asp-items="@ViewBag.Statuses" class="form-control"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" class="btn btn-danger">Назад</a>
+                <input type="submit" value="Редактировать" class="btn btn-success" />
+            </div>
+            <div class="form-group">
+                <div class="list-group">
+                    @if (Model.SupplyFlowers.Count() == 0)
+                    {
+                        <div class="list-group-item">
+                            <h4 class="text-danger"> Цветы в поставке отсутствуют</h4>
+                        </div>
+                    }
+                    else
+                    {
+                        foreach (SupplyFlower supplyFlower in Model.SupplyFlowers)
+                        {
+                            <div class="list-group-item">
+                                @supplyFlower.Flower.Name
+                                <span class="float-right">
+                                    <a asp-action="FlowerDetails" asp-route-supplyId="@supplyFlower.SupplyId" asp-route-flowerId="@supplyFlower.FlowerId" class="btn btn-info">Подробности</a>
+                                    <a asp-action="FlowerEdit" asp-route-supplyId="@supplyFlower.SupplyId" asp-route-flowerId="@supplyFlower.FlowerId" class="btn btn-primary">Редактировать</a>
+                                    <a asp-action="FlowerDelete" asp-route-supplyId="@supplyFlower.SupplyId" asp-route-flowerId="@supplyFlower.FlowerId" onclick="return confirm('Вы действительно хотите удалить цветы ?')" }) class="btn btn-danger">Удалить</a>
+                                </span>
+                            </div>
+                        }
+                    }
+                    <div class="list-group-item">
+                        <a asp-action="FlowerCreate" asp-route-id="@Model.Id" class="btn btn-secondary">Добавить</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
